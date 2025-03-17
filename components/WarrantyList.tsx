@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
-// import { GradientCard } from "@/components/mgui/Gcards";
-import { MagicCard, MagicContainer } from "@/components/mgui/Mcards";
 import { useWarranty } from "@/hooks/useWarranty";
-import { Button } from "./ui/button";
-import Link from "next/link";
-import { ExternalLink, PawPrint, ScanQrCode } from "lucide-react";
 import WarrantyCard from "./WarrantyCard";
+import { BlockchainLoader } from "./ui/blockLoader";
 
 function WarrantyList({ account }: { account: string }) {
   const { warranties, warrantyLoading, getWarranties } = useWarranty();
@@ -22,7 +18,11 @@ function WarrantyList({ account }: { account: string }) {
 
   return (
     <div className="flex flex-col gap-4 w-full rounded-md">
-      {warranties?.length ? (
+      {warrantyLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <BlockchainLoader size="md" />
+        </div>
+      ) : warranties?.length ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {warranties.map((warranty) => (
             <WarrantyCard key={warranty.hash} warranty={warranty} />

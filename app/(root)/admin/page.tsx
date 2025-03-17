@@ -4,6 +4,7 @@ import { AuthContextType } from "@/context/Auth";
 import { AuthContext } from "@/context/Auth";
 // import ClaimWarranty from "@/components/ClaimWarranty";
 import ClaimedWarranty from "@/components/ClaimedWarranty";
+import { AdminForm } from "@/components/AdminForm";
 function AdminFlow() {
   const { provider, account, getAccounts } = useContext(
     AuthContext
@@ -15,21 +16,21 @@ function AdminFlow() {
 
   return (
     <div className="w-full border p-4">
-      <Tabs defaultValue="claim" className="w-full">
+      <Tabs defaultValue="register" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="claim" className="cursor-pointer">
-            Claim Warranty
+          <TabsTrigger value="register" className="cursor-pointer">
+            Register
           </TabsTrigger>
           <TabsTrigger value="claimed" className="cursor-pointer">
             Claimed Warranties
           </TabsTrigger>
         </TabsList>
         <div className="py-4">
-          <TabsContent value="claim">
-            {/* <ClaimWarranty provider={provider}/> */}
+          <TabsContent value="register">
+            <AdminForm account={account} provider={provider} />
           </TabsContent>
           <TabsContent value="claimed">
-            <ClaimedWarranty account={account} />
+            <ClaimedWarranty account={account} provider={provider} />
           </TabsContent>
         </div>
       </Tabs>

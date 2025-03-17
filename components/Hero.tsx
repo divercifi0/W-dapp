@@ -11,7 +11,7 @@ function Hero() {
           <TextGenerate words={`Welcome to the Future`} />
         </div>
         <div className="z-10 absolute text-2xl top-[60%] md:text-6xl lg:text-8xl md:top-[65%] text-color-brand">
-          <TextGenerate words={`E-RANTY`} />
+          <TextGenerate words={`MY-WARRANTY`} />
         </div>
         <div className="circle-wrap">
           <div className="ic1-w-h  circle-style"></div>

@@ -20,7 +20,7 @@ import { CONTRACT_ABI, CONTRACT_ADDRESS } from "@/utils/constants";
 import { ethers } from "ethers";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/client";
-
+import { toast } from "sonner";
 const formSchema = z.object({
   serialNumber: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -73,9 +73,13 @@ export function ClaimForm({
       })
         .then((_res) => {
           setLoading(false);
+          toast("Warranty has been claimed", {
+            description: "Hash: " + txHash,
+          });
         })
         .catch(function (error) {
           setLoading(false);
+          toast("Error claiming warranty");
           console.log("error", error);
         });
     } catch (error) {

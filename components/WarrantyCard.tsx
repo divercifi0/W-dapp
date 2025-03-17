@@ -37,18 +37,18 @@ const WarrantyCard = ({ warranty }: { warranty: any }) => {
                 <ScanQrCode size={16} className="text-green-400" />
                 <div className="">ACTIVE</div>
               </div>
-              {/* <div className="text-sm  flex flex-col gap-2">
-                      <div className="font-semibold  text-gray-300">
-                        Terms & Conditions
-                      </div>
-                      <div className="text-gray-400 px-4">
-                        {warranty.coverageDetails
-                          .split("\n")
-                          .map((line: string, index: number) => (
-                            <div key={index}>{line}</div>
-                          ))}
-                      </div>
-                    </div> */}
+              <div className="text-sm  flex flex-col gap-2">
+                <div className="font-semibold  text-gray-300">
+                  Terms & Conditions
+                </div>
+                <div className="text-gray-400 px-4">
+                  {warranty.coverageDetails
+                    .split("\n")
+                    .map((line: string, index: number) => (
+                      <div key={index}>{line}</div>
+                    ))}
+                </div>
+              </div>
             </div>
             <div className="w-full flex justify-end text-sm text-gray-300 cursor-pointer">
               View T&C

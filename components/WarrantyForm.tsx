@@ -20,7 +20,8 @@ import { CONTRACT_ABI, CONTRACT_ADDRESS } from "@/utils/constants";
 import { ethers } from "ethers";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/client";
-
+import { toast } from "sonner";
+import { BlockchainLoader } from "./ui/blockLoader";
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -87,10 +88,14 @@ export function WarrantyForm({
         createdAt: serverTimestamp(),
       })
         .then((_res) => {
+          toast("Warranty has been created", {
+            description: "Hash: " + txHash,
+          });
           setLoading(false);
         })
         .catch(function (error) {
           setLoading(false);
+          toast("Error creating warranty");
           console.log("error", error);
         });
     } catch (error) {
@@ -157,9 +162,7 @@ export function WarrantyForm({
             )}
           />
           {loading ? (
-            <Button type="button" disabled>
-              Submitting...
-            </Button>
+            <BlockchainLoader size="sm" />
           ) : (
             <Button type="submit" className="cursor-pointer">
               Submit

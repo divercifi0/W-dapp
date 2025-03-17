@@ -17,7 +17,7 @@ import { ethers } from "ethers";
 // import { CONTRACT_ABI } from "@/utils/constants";
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
-// import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export type AuthContextType = {
   login: () => void;
@@ -59,6 +59,7 @@ const web3auth = new Web3Auth(web3AuthOptions);
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const [account, setAccount] = useState<any>(null);
@@ -119,6 +120,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     await web3auth.logout();
+    router.push("/");
     setProvider(null);
     setLoggedIn(false);
   };

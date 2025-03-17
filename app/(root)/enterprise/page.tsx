@@ -16,19 +16,19 @@ function EnterpriseFlow() {
   return (
     <div className="w-full border rounded-lg p-4">
       <Tabs defaultValue="view" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="view" className="cursor-pointer">
             All Warranties
-          </TabsTrigger>
-          <TabsTrigger value="add" className="cursor-pointer">
-            Add Warranty
-          </TabsTrigger>
-          <TabsTrigger value="register" className="cursor-pointer">
-            Enterprise Registration
           </TabsTrigger>
           <TabsTrigger value="claim" className="cursor-pointer">
             Claim Warranty
           </TabsTrigger>
+          <TabsTrigger value="add" className="cursor-pointer">
+            Add Warranty
+          </TabsTrigger>
+          {/* <TabsTrigger value="register" className="cursor-pointer">
+            Enterprise Registration
+          </TabsTrigger> */}
         </TabsList>
         <div className="py-4">
           <TabsContent value="view">
@@ -37,12 +37,12 @@ function EnterpriseFlow() {
           <TabsContent value="add">
             <WarrantyForm account={account} provider={provider} />
           </TabsContent>
-          <TabsContent value="register">
+          {/* <TabsContent value="register">
             <div className="w-max border rounded-md py-2 px-4 my-4">
               <h1>Enterprise Registration</h1>
             </div>
             <AdminForm account={account} provider={provider} />
-          </TabsContent>
+          </TabsContent> */}
           <TabsContent value="claim">
             <ClaimWarranty provider={provider} account={account} />
           </TabsContent>
